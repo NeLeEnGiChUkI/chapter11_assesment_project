@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+  {% block content %}
+  <div class="row text-center">
+    <div class="col-md-12">
+      <h1>Login Form</h1>
+        <p>
+          To Login,you will have to write your username and password
+        </p>
+    </div>
+  </div>
+    <div class="row">
+      <div class="col-md-4">
+        <!-- Empty column -->
+      </div>
+      <div class="col-md-4 border border-4">
+        <div class="text-center">
+          <h1>Login</h1>
+        <p>
+          <img src="{{url_for('static', filename='images/profile.png')}}">
+        </p>
+        </div>
+        <form action="" method="post" novalidate>
+          {{ form.hidden_tag() }}
+          <p>
+            {{ form.username.label }} <br>
+            {{ form.username(size=32) }} <br>
+            {% for error in form.username.errors %}
+            <span style="color: red;">
+              {{error}}
+            </span>
+            {% endfor %}
+          </p>
+          <p>
+            {{ form.password.label }} <br>
+            {{ form.password(size=32) }} <br>
+            {% for error in form.username.errors %}
+            <span style="color: red;">
+              {{error}}
+            </span>
+            {% endfor %}
+          </p>
+          <p>
+            {{ form.remember_me() }} {{ form.remember_me.label }}
+          </p>
+          <p>
+            {{ form.submit() }}
+          </p>
+        </form>
+        <p>
+          New here? <a href="{{ url_for('register') }}">Register</a>
+        </p>
+      </div>
+      <div class="col-md-4">
+        <!-- Empty column -->
+      </div>
+    </div>
+{% endblock %}

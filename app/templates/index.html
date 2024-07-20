@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+  {% block content %}
+  <div class="row text-center">
+    <div class="col-md-12">
+      <h1>{{ title }}</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table">
+        <thead>
+          <th>Avatar</th>
+          <th>Username</th>
+          <th>Bio</th>
+          <th>Message</th>
+          <th>When</th>
+        </thead>
+        <tbody>
+          {% for post in posts %}
+            {% if post %}
+            <tr valign="top">
+              <td><img src="{{ post.author.avatar(36) }}"></td>
+              <td>{{ post.author.username }}</td>
+              <td>{{ post.author.about_me }}</td>
+              <td>{{ post.body }}</td>
+              <td>{{ post.timestamp }}</td>
+            </tr>
+            {% endif %}
+          {% endfor %}
+        </tbody>
+      </table>
+      {% if current_user.is_anonymous %}
+      <a href="{{ url_for('login') }}">
+        <p>Login to post a message</p>
+      </a>
+      {% endif %}
+    </div>
+  </div> 
+{% endblock %}
